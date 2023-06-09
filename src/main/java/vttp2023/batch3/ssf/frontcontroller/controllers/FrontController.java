@@ -79,11 +79,19 @@ public class FrontController {
 
 		
 			// check if the user input and our correct answer is the same, return html views accordingly
-			if (svc.validateCaptcha(Integer.parseInt(userAnswer), Integer.parseInt(correctAnswer))) {
-				return "view1";
+
+			if (userAnswer != null && correctAnswer != null &&
+			svc.validateCaptcha(Integer.parseInt(userAnswer), Integer.parseInt(correctAnswer))) {
+			return "view1";
 			} else {
-				return "view0";
+			return "view0";
 			}
+			
+			// if (svc.validateCaptcha(Integer.parseInt(userAnswer), Integer.parseInt(correctAnswer))) {
+			// 	return "view1";
+			// } else {
+			// 	return "view0";
+			// }
 			
 
 		}
