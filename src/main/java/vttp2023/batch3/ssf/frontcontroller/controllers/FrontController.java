@@ -17,4 +17,6 @@ public class FrontController {
 
 		return "view0";
 	}
+
+	
 }
