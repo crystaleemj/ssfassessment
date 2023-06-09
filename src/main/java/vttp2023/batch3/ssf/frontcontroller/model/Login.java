@@ -60,8 +60,8 @@ public class Login {
 
      }
 
-    
-    public static JsonObject toJSON() {
+    // create a toJson method
+    public JsonObject toJSON() {
         return Json.createObjectBuilder()
         .add("username", this.getUser())
         .add("password", this.getPassword())
