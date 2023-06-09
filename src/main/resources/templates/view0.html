@@ -11,15 +11,16 @@
 	<body>
 
 		<h2>Please Login</h2>
-
-		<table>
+		<form th:action="@{/login}" data-th-object="${login}" method="post">
+			<table>
 			<tr>
 				<td> 
 					<label for="username">Username:</label> 
 				</td>
 				<td>
 					<input type="text" id="username" size="30" 
-							placeholder="Please type in your username" >
+							placeholder="Please type in your username" data-th-field="*{user}">
+					<span class="error" data-th-if="${#fields.hasErrors('user')}" data-th-errors="*{user}"></span>
 				</td>
 			</tr>
 			<tr>
@@ -28,16 +29,19 @@
 				</td>
 				<td>
 					<input type="password" id="password" size="30" 
-							placeholder="Please type in your password">
+							placeholder="Please type in your password" data-th-field="*{password}">
+					<span class="error" data-th-if="${#fields.hasErrors('password')}" data-th-errors="*{password}"></span>
 				</td>
 			</tr>
 			<tr>
 				<td></td>
 				<td>
+					<button action="/">Back</button>
 					<button>Login</button>
 				</td>
 			</tr>
-		</table>
+			</table>
+		</form>
 		
 	</body>
 </html>
