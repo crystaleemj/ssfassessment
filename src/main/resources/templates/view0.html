@@ -33,12 +33,6 @@
 					<span class="error" data-th-if="${#fields.hasErrors('password')}" data-th-errors="*{password}"></span>
 				</td>
 			</tr>
-			<!-- <tr>
-				
-				<td>What is <span th:if="${captcha}" th:text="${captcha}"></span></td>
-			</br>
-				<td>Answer:</td><input type="number">
-			</tr> -->
 			<tr>
 				<td></td>
 				<td>
@@ -52,7 +46,7 @@
 			<input type="hidden" name="correctAnswer" th:value="${correctAnswer}"/>
 			</br>
 			<div th:if="${attempt}" th:text="${attempt}"></div>
-			<input type="number" name="userAnswer" placeholder="Enter the answer"/>
+			<input type="number" placeholder="Enter the answer" name="userAnswer"/>
 			</div>
 			
 			

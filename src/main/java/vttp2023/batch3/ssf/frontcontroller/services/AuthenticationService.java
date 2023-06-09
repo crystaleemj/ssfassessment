@@ -22,6 +22,7 @@ public class AuthenticationService {
 		// hardcoded the url into String apiUrl as it does not have a key and is not sensitive info
 		String apiUrl = "https://authservice-production-e8b2.up.railway.app/api/authenticate";
 		
+		// create new login object
 		Login login = new Login(username, password);
 		RequestEntity<String> entity = RequestEntity.post(apiUrl)
 													.contentType(MediaType.APPLICATION_JSON)
@@ -60,6 +61,7 @@ public class AuthenticationService {
     	int num2;
     	String operator;
 
+		// create random object to use its methods to generate random numbers
 		Random random = new Random();
     	String[] operators = {"+", "-", "/", "*"};
         num1 = random.nextInt(50 - 1) + 1;
@@ -78,6 +80,7 @@ public class AuthenticationService {
 	// write calcCaptcha method to calculate the correct answer our captcha expects from user
 	public int calcCaptcha(int num1, int num2, String operator){
 
+		// use switch case to check operator and calculate accordingly
 		int answer = 0;
 		switch (operator){
 			case "+":
@@ -103,6 +106,8 @@ public class AuthenticationService {
 
 	// write validateCaptcha method to check if user input is the same as expected input
 	public boolean validateCaptcha(int userAnswer, int correctAnswer) {
+
+		// check if useranswewr and correctanswer is the same, return true
 		return userAnswer == correctAnswer;
 	}
 	

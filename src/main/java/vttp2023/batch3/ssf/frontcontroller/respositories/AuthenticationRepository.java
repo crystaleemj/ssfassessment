@@ -1,27 +1,34 @@
-// package vttp2023.batch3.ssf.frontcontroller.respositories;
+package vttp2023.batch3.ssf.frontcontroller.respositories;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.data.redis.core.RedisTemplate;
-// import org.springframework.stereotype.Repository;
+import java.time.Duration;
 
-// @Repository
-// public class AuthenticationRepository {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Repository;
 
-// 	// TODO Task 5
-// 	// Use this class to implement CRUD operations on Redis
+@Repository
+public class AuthenticationRepository {
+
+	// TODO Task 5
+	// Use this class to implement CRUD operations on Redis
  
-//     @Autowired
-//     private RedisTemplate<String, Object> template;
+    @Autowired
+    private RedisTemplate<String, Object> template;
 
-//     public void save(Order order){
+    public void save(String Login){
 
-//         //opsForValue = to .set/.get value to/fro database 
-//         template.opsForValue().set(order.getOrderId(), order.toJson().toString());
+        //opsForValue = to .set/.get value to/fro database 
+        template.opsForValue().set(Login, "user is disabled for 30 min", Duration.ofMinutes(30));
         
-//     }
+    }
 
-//     public Order getOrder(String orderId){
-//         String json = (String) template.opsForValue().get(orderId);
-//         return Order.create(json);
-//     }
-// }
+    public boolean isUserDisabled(String user){
+
+        String loginuser = (String) template.opsForValue().get(user);
+       if (loginuser != null){
+        return true;
+       } else {
+        return false;
+       }
+    }
+}

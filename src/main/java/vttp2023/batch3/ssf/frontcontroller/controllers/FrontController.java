@@ -50,8 +50,10 @@ public class FrontController {
 		
 		try {
 			
+			// call authenticate() method to check if user & login is valid
 			svc.authenticate(login.getUser(), login.getPassword());
 
+			// return success message accordingly
 			model.addAttribute("successmsg", "login successful");
 			model.addAttribute("login", login);
 			return "view1";
@@ -60,10 +62,14 @@ public class FrontController {
 
 
 			attempt++;
+
+			// return error message accordingly 
 			model.addAttribute("exceptionmsg", "Invalid login details!");
 			model.addAttribute("loginAttempts", attempt);
 	  
 			if (attempt < 2) {
+
+				// call generateCaptcha() method to generate captcha
 			  model.addAttribute("captcha", svc.generateCaptcha());
 			}
 			 
@@ -71,8 +77,8 @@ public class FrontController {
 			// Bind captcha information to thymeleaf model for HTML rendering
 			model.addAttribute("correctAnswer", correctAnswer);
 
-			model.addAttribute("captcha", svc.generateCaptcha());
-
+		
+			// check if the user input and our correct answer is the same, return html views accordingly
 			if (svc.validateCaptcha(Integer.parseInt(userAnswer), Integer.parseInt(correctAnswer))) {
 				return "view1";
 			} else {
